@@ -196,11 +196,11 @@ $(document).ready(function () {
 <div id="part-a-beta-bernoulli" class="section level4">
 <h4>Part (A) Beta-Bernoulli<br />
 </h4>
-Prior <span class="math display">\[w\sim Beta(a,b)\]</span> <span class="math display">\[p(w) \propto w^{a-1}(1-w)^{b-1}\]</span> Likelihood <span class="math display">\[p(x_{1:N}|w) = \prod_{i=1}^N w^{x-{i}}(1-w)^{1-x_{i}}= w^{\sum x_{i}} (1-w)^{n+b-\sum x_i}\]</span> Posterior
+Prior <span class="math display">\[w\sim Beta(a,b)\]</span> <span class="math display">\[p(w) \propto w^{a-1}(1-w)^{b-1}\]</span> Likelihood <span class="math display">\[p(x_{1:N}|w) = \prod_{i=1}^N w^{x-{i}}(1-w)^{1-x_{i}}= w^{\sum_{i=1}^N x_{i}} (1-w)^{N+b-\sum_{i=1}^N x_i}\]</span> Posterior
 <span class="math display">\[\begin{align}
 p(w|x_{1:N}) &amp;\propto p(w) p(x_{1:N}|w) \\
-&amp;\propto w^{a+\sum x_i-1} (1-w)^{b+n-\sum x_{i}-1}\\
-&amp; \sim Beta(a+\sum x_i, b+n-\sum x_i)
+&amp;\propto w^{a+\sum_{i=1}^N x_i-1} (1-w)^{b+N-\sum_{i=1}^N x_{i}-1}\\
+&amp; \sim Beta(a+\sum_{i=1}^N x_i, b+N-\sum_{i=1}^N x_i)
 \end{align}\]</span>
 </div>
 <div id="part-b-change-of-variables" class="section level4">
