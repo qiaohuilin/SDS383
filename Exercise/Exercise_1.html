@@ -249,6 +249,7 @@ Prior <span class="math display">\[p(\theta)=\frac{1}{\sqrt{2\pi v}}e^{-\frac{1}
 p(\theta|x_{1:N}) &amp;\propto p(\theta)p(x_{1:N}|\theta)\\
 &amp; \propto e^{-\frac{1}{2v}(\theta-m)^2}e^{-\frac{1}{2\sigma^2}\sum(x_{i}-\theta)^2} \\
 &amp; \propto e^{-\frac{1}{2}[(\frac{n}{\sigma^2}+\frac{1}{v})\theta^2-2(\frac{n\bar{x}}{\sigma^2}+\frac{m}{v})\theta]} \\
+&amp; \propto e^{-\frac{1}{2}(\frac{n}{\sigma^2}+\frac{1}{v})(\theta-\frac{\frac{n\bar{x}}{\sigma^2}+\frac{m}{v}}{\frac{n}{\sigma^2}+\frac{1}{v}})^2} \\
 &amp; \sim N(\frac{\frac{n\bar{x}}{\sigma^2}+\frac{m}{v}}{\frac{n}{\sigma^2}+\frac{1}{v}},\frac{1}{\frac{n}{\sigma^2}+\frac{1}{v}})
 \end{align}\]</span>
 </div>
@@ -297,6 +298,33 @@ p(x)&amp;=\int_0^{+\infty}p(x,w)dw \\
 &amp; \sim t_a(m,(b/a)^{1/2})
 \end{align}\]</span>
 <p><span class="math inline">\(x\)</span> is marginally a t-distribution with <span class="math inline">\(a\)</span> degrees of freedom, centered at <span class="math inline">\(m\)</span> and with scale parameter <span class="math inline">\((b/a)^{1/2}\)</span></p>
+</div>
+</div>
+<div id="question-2" class="section level2">
+<h2>Question 2</h2>
+<div id="part-a-covariance-matrix" class="section level4">
+<h4>Part (A) covariance matrix</h4>
+<span class="math display">\[\begin{align}
+    cov(x)&amp;=E[(x-\mu)(x-\mu)^T]\\
+    &amp;= E(xx^T)-2E(x\mu^T)+\mu\mu^T\\
+    &amp;= E(xx^T)-2\mu\mu^T+\mu\mu^T\\
+    &amp;= E(xx^T)-\mu\mu^T
+\end{align}\]</span>
+<span class="math display">\[\begin{align}
+    cov(Ax+b)&amp;=E[(Ax+b-A\mu-b)(Ax+b-A\mu-b)^T]\\
+    &amp;=E(Axx^TA^T)\\
+    &amp;=Acov(x)A^T
+\end{align}\]</span>
+</div>
+<div id="part-b-mgf-of-normal" class="section level4">
+<h4>Part (B) MGF of Normal</h4>
+<p><span class="math display">\[p(z)=p(z_1,z_2,,,z_p=(2\pi)^{-\frac{p}{2}}e^{-\frac{1}{2}\sum z_i^2}=(2\pi)^{-\frac{p}{2}}e^{-\frac{1}{2}z^Tz}\]</span></p>
+<span class="math display">\[\begin{align}
+    M_z(t)=E(e^{t^Tz}) &amp;= \int (2\pi)^{-\frac{p}{2}}e^{t^T z}e^{-\frac{1}{2}z^Tz} dz\\
+    &amp;= \int (2\pi)^{-\frac{p}{2}} e^{-\frac{1}{2}(z^Tz-2t^Tz+t^Tt-t^Tt)}dz\\
+    &amp;=\int (2\pi)^{-\frac{p}{2}} e^{-\frac{1}{2}(z-t)^T(z-t)}d(z-t)e^{-\frac{1}{2}t^Tt}\\
+    &amp;=e^{-\frac{1}{2}t^Tt}
+\end{align}\]</span>
 </div>
 </div>
 
