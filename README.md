@@ -1,6 +1,6 @@
 # SDS383
 This repository contains the exercise and final project of SDS383: Stat Modeling II.
-# Please Click the link Below for solutions. 
+# Please Click the Links Below for Solutions. 
 
 My solutions:
 [Landing Page](https://qiaohuilin.github.io/SDS383/index.html)
