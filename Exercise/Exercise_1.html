@@ -326,6 +326,73 @@ p(x)&amp;=\int_0^{+\infty}p(x,w)dw \\
     &amp;=e^{-\frac{1}{2}t^Tt}
 \end{align}\]</span>
 </div>
+<div id="part-c-mgf-of-multivariate-normal" class="section level4">
+<h4>Part (C) MGF of multivariate normal</h4>
+<p>Using the fact the <span class="math inline">\(x\)</span> is multivariate normal if and only if <span class="math inline">\(z=a^Tx\)</span> is a scalar normal (Claim 1), prove that multivariate normal <span class="math inline">\(x\)</span> must have the MGF of the form <span class="math inline">\(M_x(t)=E(e^{t^Tx})=e^{t^T\mu+t^T\Sigma t/2}\)</span>.</p>
+<div id="part-c-1" class="section level6">
+<h6>Part C-1</h6>
+<p>First, <span class="math inline">\(x\sim MVN(\mu,\Sigma)\)</span>, which means for every nonzero vector <span class="math inline">\(a\)</span>, <span class="math inline">\(z=a^Tx\)</span> is a scalar normal. <span class="math inline">\(z=a^Tx \sim N(a^T\mu,a^T \Sigma a)\)</span> then we have, for scalars <span class="math display">\[M_z(t)=E(e^{tz})=e^{ta^T\mu+\frac{1}{2}t^2(a\Sigma a^T)}\]</span> Therefore, <span class="math display">\[M_x(a)=E(e^{a^Tx})=E(e^{z})=M_z(1)=e^{a^T\mu+\frac{1}{2}(a\Sigma a^T)}\]</span> which means, <span class="math display">\[M_x(t)=E(e^{t^Tx})=e^{t^T\mu+\frac{1}{2}(t\Sigma t^T)}\]</span></p>
+</div>
+<div id="part-c-2" class="section level6">
+<h6>Part C-2</h6>
+<p>The other direction, if we say <span class="math inline">\(x\)</span> has the MGF of the form <span class="math inline">\(M_x(t)=e^{t^T\mu+\frac{1}{2}(t\Sigma t^T)}\)</span>, then for any nonzero vector,let <span class="math inline">\(z=a^Tx\)</span> then we have <span class="math display">\[M_z(t)=Ee^{tz}=E(e^{ta^Tx})=M_x(ta)=e^{ta^T\mu+\frac{1}{2}t^2a\Sigma a^T}\]</span> which means, <span class="math inline">\(z\)</span> is a scalar normal variable with density <span class="math inline">\(N(a^T\mu, a\Sigma a^T)\)</span> for every non-identically zero vector <span class="math inline">\(a\)</span>. Therefore, based on Claim 1, <span class="math inline">\(x\sim MVN(\mu,\Sigma)\)</span></p>
+</div>
+</div>
+<div id="part-d-affine-transformation-of-standard-normal" class="section level4">
+<h4>Part (D) Affine transformation of standard normal</h4>
+<p>Prove if <span class="math inline">\(x=Lz+\mu\)</span>, <span class="math inline">\(L\)</span> is some <span class="math inline">\(p\times p\)</span> matrix with full rank, <span class="math inline">\(z\)</span> is standard multivariate normal, then <span class="math inline">\(x\)</span> is multivariate normal too.</p>
+We know <span class="math inline">\(M_z(t)=E(e^{t^Tz})=e^{\frac{1}{2}t^Tt}\)</span>, then,
+<span class="math display">\[\begin{align*}
+    M_x(t)&amp;=M_{Lz+\mu}=E(e^{t^T(Lz+\mu)})\\
+     &amp;= e^{t^T\mu}E(e^{t^TLZ})\\
+    &amp;= e^{t^T\mu}M_z(t^TL)\\
+    &amp;= e^{t^T\mu} e^{\frac{1}{2}(L^Tt)^T(L^Tt)}\\
+    &amp;=e^{t^T\mu+\frac{1}{2}t^T LL^T t} \\
+    &amp; \sim MVN(\mu,LL^T)
+\end{align*}\]</span>
+<p><span class="math inline">\(x\)</span> is multivariate with mean <span class="math inline">\(\mu\)</span>, and covariance matrix <span class="math inline">\(LL^T\)</span>, <span class="math inline">\(L\)</span> is full rank so that <span class="math inline">\(\Sigma=LL^T\)</span> has inverse, which is necessary in the PDF.</p>
+</div>
+<div id="part-e-affine-transformation-of-standard-normal" class="section level4">
+<h4>Part (E) Affine transformation of standard normal</h4>
+<p>Prove if <span class="math inline">\(x \sim MVN(\mu,\Sigma)\)</span>, <span class="math inline">\(x\)</span> can be written as the affine transformation of standard normal <span class="math inline">\(z\)</span> as <span class="math inline">\(x=Lz+\mu\)</span>.</p>
+<p>We know the MGF for <span class="math inline">\(x\)</span> is <span class="math display">\[M_x(t)=e^{t^T\mu+\frac{1}{2}t^T\Sigma t}\]</span></p>
+While the MGF for <span class="math inline">\(Lz+\mu\)</span>, where <span class="math inline">\(LL^T=\Sigma\)</span> is:
+<span class="math display">\[\begin{align}
+    M_{Lz+\mu}(t) &amp;=E(e^{t^T(Lz+\mu)}) \\
+    &amp;= e^{t^T\mu}E(e^{t^TLZ})\\
+    &amp;= e^{t^T\mu}M_z(t^TL)\\
+    &amp;= e^{t^T\mu} e^{\frac{1}{2}(L^Tt)^T(L^Tt)}\\
+    &amp;=e^{t^T\mu+\frac{1}{2}t^T\Sigma t}
+\end{align}\]</span>
+<p>Strategy to simulate multivariate normal variable <span class="math inline">\(x \sim MVN(\mu, \Sigma)\)</span>:<br />
+-Generate standard normal variate <span class="math inline">\(z\)</span><br />
+-Take <span class="math inline">\(x=Lz+\mu\)</span> where <span class="math inline">\(LL^T=\Sigma\)</span></p>
+
+</div>
+<div id="part-f-pdf-of-multivariate-normal" class="section level4">
+<h4>Part (F) PDF of Multivariate Normal</h4>
+<p>Using the last result, <span class="math inline">\(x \sim MVN(\mu, \Sigma)\)</span> can be written as the affine transformation of standard normal variable <span class="math inline">\(x=Lz+\mu\)</span>, where <span class="math inline">\(L^TL=\Sigma\)</span>.</p>
+<p>We know for some constant <span class="math inline">\(c_0\)</span>, <span class="math display">\[f_{Z}(z)=c_0e^{-\frac{1}{2}z^Tz}\]</span> <span class="math display">\[z=L^{-1}(x-\mu)\]</span></p>
+Then use change of variables,
+<span class="math display">\[\begin{align}
+    f_x(x) &amp;= f_z(L^{-1}(x-\mu))|L^{-1}|\\
+    &amp;= C e^{-\frac{1}{2}(x-\mu)^T(L^{-1})^T(L^{-1})(x-\mu)}\\
+    &amp;= C e^{-\frac{1}{2}(x-\mu)^T\Sigma^{-1}(x-mu)}
+\end{align}\]</span>
+<p>for some constant <span class="math inline">\(C\)</span> and quadratic form <span class="math inline">\(Q(x-\mu)=(x-\mu)^T\Sigma^{-1}(x-mu)\)</span>.</p>
+</div>
+<div id="part-g-mgf-of-linear-combination-of-independent-normals" class="section level4">
+<h4>Part (G) MGF of linear combination of independent normals</h4>
+<span class="math display">\[M_{x_1}(t)=E(e^{t^Tx_1})=e^{t^T\mu_1+\frac{1}{2}t^T\Sigma_1t}\]</span> <span class="math display">\[M_{x_2}(t)=E(e^{t^Tx_2})=e^{t^T\mu_2+\frac{1}{2}t^T\Sigma_2t}\]</span> <span class="math display">\[y=Ax_1+Bx_2\]</span> Then the MGF for <span class="math inline">\(Y\)</span> is:
+<span class="math display">\[\begin{align*}
+    M_Y(t) &amp;= M_{Ax_1+Bx_2}(t)=E(e^{t^T(Ax_1+Bx_2)})\\
+    &amp;= E(e^{(A^Tt)^Tx_1}e^{(B^Tt)^Tx_2})\\
+    &amp;= M_{x_1}(A^T) M_{x_2}(B^T)\\
+    &amp;= e^{t^TA\mu_1+\frac{1}{2}t^TA\Sigma_1A^Tt+t^TB\mu_2+\frac{1}{2}t^TB\mu_2+\frac{1}{2}t^TB\Sigma_2B^Tt}\\
+    &amp;=e^{t^T(A\mu_1+B\mu_2)+\frac{1}{2}t^T(A\Sigma_1A^T+B\Sigma_2B^T)t}
+\end{align*}\]</span>
+<p>Thus we have, <span class="math display">\[Y\sim MVN(A\mu_1+B\mu_2,A\Sigma_1A^T+B\Sigma_2B^T)\]</span></p>
+</div>
 </div>
 
 
