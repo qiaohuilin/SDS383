@@ -394,6 +394,164 @@ Then use change of variables,
 <p>Thus we have, <span class="math display">\[Y\sim MVN(A\mu_1+B\mu_2,A\Sigma_1A^T+B\Sigma_2B^T)\]</span></p>
 </div>
 </div>
+<div id="question-3" class="section level2">
+<h2>Question 3</h2>
+<div id="part-a-marginal-distribution-of-x_1" class="section level4">
+<h4>Part (A) Marginal Distribution of <span class="math inline">\(x_1\)</span></h4>
+<p><span class="math display">\[
+x_1=
+\left[
+\begin{array}{cccccc}
+     1 &amp;&amp;&amp;&amp;&amp;  \\
+     &amp; 1 &amp;&amp;&amp;&amp; \\
+     ....&amp;.... &amp;....\\
+     &amp;&amp;&amp;1 &amp;&amp; \\
+     &amp;&amp;&amp;&amp; 0  \\
+    .... &amp;... &amp;... &amp;... &amp;...\\
+      &amp;&amp;&amp;&amp; &amp;0
+\end{array}
+\right]
+\left[
+\begin{array}{c}
+x_1\\
+x_2\\
+...\\
+x_{p}\\
+x_{p+1}\\
+...\\
+x_{n}
+\end{array}
+\right]
+=L \left[
+\begin{array}{c}
+x_1\\
+x_2\\
+...\\
+x_{p}\\
+x_{p+1}\\
+...\\
+x_{n}
+\end{array}
+\right]
+\]</span> We know <span class="math inline">\(x \sim MVN(\mu,\Sigma)\)</span>, thus <span class="math display">\[x_1=Lx\sim(L\mu,L\Sigma L^T)\]</span> where <span class="math inline">\(L\)</span> is defined above as the <span class="math inline">\(0\)</span> matrix with <span class="math inline">\(p\)</span> <span class="math inline">\(1\)</span>s on diagonal.</p>
+</div>
+<div id="part-b-inverse-of-block-matrix" class="section level4">
+<h4>Part (B) Inverse of Block Matrix</h4>
+<p>For any block matrix $ $ , we can use Gaussian Elimination to get the inverse, <span class="math display">\[
+\left[
+\begin{array}{cc}
+     A &amp;B  \\
+     C &amp;D 
+\end{array}
+\big{|}
+\begin{array}{cc}
+     I &amp;0  \\
+     0 &amp;I 
+\end{array}
+\right]
+\]</span></p>
+<p><span class="math display">\[
+\rightarrow
+\left[
+\begin{array}{cc}
+    A-BD^{-1}C &amp;0  \\
+     C &amp;D 
+\end{array}
+\big{|}
+\begin{array}{cc}
+     I &amp;-BD^{-1}\\
+     0 I
+\end{array}
+\right]
+\]</span></p>
+<p><span class="math display">\[
+\rightarrow
+\left[
+\begin{array}{cc}
+    A-BD^{-1}C &amp;0  \\
+     0 &amp;D 
+\end{array}
+\big{|}
+\begin{array}{cc}
+     I &amp;-BD^{-1}\\
+     -C(A-BD^{-1}C)^{-1} &amp;I +C(A-BD^{-1}C)^{-1}BD^{-1}
+\end{array}
+\right]
+\]</span></p>
+<p><span class="math display">\[
+\rightarrow
+\left[
+\begin{array}{cc}
+   I &amp;0  \\
+     0 &amp;I 
+\end{array}
+\big{|}
+\begin{array}{cc}
+     (A-BD^{-1}C)^{-1} &amp;-(A-BD^{-1}C)^{-1}BD^{-1}\\
+     -D^{-1}C(A-BD^{-1}C)^{-1} &amp;D^{-1} +D^{-1}C(A-BD^{-1}C)^{-1}BD^{-1}
+\end{array}
+\right]
+\]</span></p>
+<p><span class="math display">\[
+=
+\left[
+\begin{array}{cc}
+   I &amp;0  \\
+     0 &amp;I 
+\end{array}
+\big{|}
+\begin{array}{cc}
+     (A-BD^{-1}C)^{-1} &amp;-(A-BD^{-1}C)^{-1}BD^{-1}\\
+     -D^{-1}C(A-BD^{-1}C)^{-1} &amp;(D-CA^{-1}B)^{-1}
+\end{array}
+\right]
+\]</span></p>
+<p>Thus, <span class="math display">\[
+\Omega=\Sigma^{-1}
+=
+\left[
+\begin{array}{cc}
+   \Sigma_{11} &amp;\Sigma_{12}  \\
+     \Sigma_{12}^T &amp;\Sigma_{22} 
+\end{array}
+\right]^{-1}
+\]</span></p>
+<p><span class="math display">\[
+\Omega
+=
+\left[
+\begin{array}{cc}
+     (\Sigma_{11}-\Sigma_{12}\Sigma_{22}^{-1}\Sigma_{12}^T)^{-1} &amp;-(\Sigma_{11}-\Sigma_{12}\Sigma_{22}^{-1}\Sigma_{12}^T)^{-1}\Sigma_{12}\Sigma_{22}^{-1}\\
+     -\Sigma_{22}^{-1}\Sigma_{12}^T(\Sigma_{11}-\Sigma_{12}\Sigma_{22}^{-1}\Sigma_{12}^T)^{-1} &amp;(\Sigma_{22}-\Sigma_{12}^T\Sigma_{11}^{-1}\Sigma_{12})^{-1}
+\end{array}
+\right]
+\]</span></p>
+</div>
+<div id="part-c-conditional-distribution-of-x_1-depending-on-x_2" class="section level4">
+<h4>Part (C) Conditional distribution of <span class="math inline">\(x_1\)</span> depending on <span class="math inline">\(x_2\)</span></h4>
+<p>We know <span class="math inline">\((x_1,x_2)\)</span> is jointly normal, with density <span class="math display">\[p(x_1,x_2) \propto exp\left(-\frac{1}{2}[(x_1-\mu_1)^T,(x_2-\mu_2)^T]\Sigma^{-1}\left[\begin{array}{cc}
+     x_1-\mu_1  \\
+     x_2-\mu_2
+\end{array}\right]\right)\]</span> working on a log scale, <span class="math display">\[\log p(x_1,x_2) \propto -\frac{1}{2}[(x_1-\mu_1)^T,(x_2-\mu_2)^T]
+\left[\begin{array}{cccc}
+     \Omega_{11}  &amp;\Omega_{12}\\
+     \Omega_{12}^T &amp;\Omega_{22}
+\end{array}\right]
+\left[\begin{array}{cc}
+     x_1-\mu_1  \\
+     x_2-\mu_2
+\end{array}\right] \]</span></p>
+<p><span class="math display">\[\log p(x_1,x_2) \propto -\frac{1}{2}\left[(x_1-\mu_1)^T\Omega_{11}(x_1-\mu_1)+2(x_1-\mu_1)^T\Omega_{12}(x_2-\mu_2)+(x_2-\mu_2)^T\Omega_{22}(x_2-\mu_2)\right]\]</span></p>
+We know the marginal distribution of <span class="math inline">\(x_2\)</span> is <span class="math display">\[p(x_2)=N(\mu_2,\Sigma_{22})\]</span> Thus <span class="math display">\[p(x_1|x_2)=\frac{p(x_1,x_2)}{p(x_2)}\]</span>
+<span class="math display">\[\begin{align}
+  \log(p(x_1|x_2) \propto -\frac{1}{2}[&amp;(x_1-\mu_1)^T\Omega_{11}(x_1-\mu_1)+2(x_1-\mu_1)^T\Omega_{12}(x_2-\mu_2)+(x_2-\mu_2)^T\Omega_{22}(x_2-\mu_2) \\
+&amp;-(x_2-\mu_2)^T\Sigma_{22}^{-1}(x_2-\mu_2) ])  
+\end{align}\]</span>
+<p>Thus, <span class="math display">\[x_1-\mu_1|x_2 \sim N(\Omega_{11}^{-1}\Omega_{12}(x_2-\mu_2),\Omega_{11}^{-1})\]</span> which means, <span class="math display">\[x_1|x_2 \sim N(\mu_1+\Omega_{11}^{-1}\Omega_{12}(x_2-\mu_2), \Omega_{11}^{-1})\]</span> Plug in the expression for <span class="math inline">\(\Omega_11\)</span> and <span class="math inline">\(\Omega_12\)</span> we also get: <span class="math display">\[x_1|x_2 \sim N(\mu_1+\Sigma_{12}\Sigma_{22}^{-1}(x_2-\mu_2), \Omega_{11}^{-1})\]</span> This is the trational form and shows how the regression of <span class="math inline">\(x_1\)</span> on <span class="math inline">\(x_2\)</span> is based on the covariance elements <span class="math inline">\(\Sigma_{12}\)</span> being rotated and scaled by the variance <span class="math inline">\(\Sigma_{22}\)</span> of the conditioning variables.</p>
+<p>The earlier expression of <span class="math inline">\(E(x_1|x_2) =\mu_1+\Omega_{11}^{-1}\Omega_{12}(x_2-\mu_2)\)</span> shows how the precision matrix is related to univariate complete conditional distributions.</p>
+<p>In a case with <span class="math inline">\(x=(x_1,,,,x_p)\)</span> where <span class="math inline">\(x_{-1}\)</span> denotes all the <span class="math inline">\(x\)</span> except for <span class="math inline">\(x_1\)</span>, we have <span class="math display">\[E(x_1|x_{-1})=\mu_1+\sum_{j}K_{1j}/K_{11}(x_j-\mu_j)\]</span> where <span class="math inline">\(K\)</span> is the precision matrix <span class="math inline">\(\Omega\)</span>, meaning the The conditional regression of <span class="math inline">\(x_1\)</span> on the other variables is such that the regression coefficient on each <span class="math inline">\(x_j\)</span> is <span class="math inline">\(−K_{1,j}/K_{1,1}\)</span>.</p>
+</div>
+</div>
 
 
 
