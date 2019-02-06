@@ -437,7 +437,14 @@ x_{n}
 </div>
 <div id="part-b-inverse-of-block-matrix" class="section level4">
 <h4>Part (B) Inverse of Block Matrix</h4>
-<p>For any block matrix $ $ , we can use Gaussian Elimination to get the inverse, <span class="math display">\[
+<p>For any block matrix <span class="math display">\[
+\left[
+\begin{array}{cc}
+     A &amp;B  \\
+     C &amp;D 
+\end{array}
+\right]
+\]</span> we can use Gaussian Elimination to get the inverse, <span class="math display">\[
 \left[
 \begin{array}{cc}
      A &amp;B  \\
@@ -547,7 +554,7 @@ We know the marginal distribution of <span class="math inline">\(x_2\)</span> is
   \log(p(x_1|x_2) \propto -\frac{1}{2}[&amp;(x_1-\mu_1)^T\Omega_{11}(x_1-\mu_1)+2(x_1-\mu_1)^T\Omega_{12}(x_2-\mu_2)+(x_2-\mu_2)^T\Omega_{22}(x_2-\mu_2) \\
 &amp;-(x_2-\mu_2)^T\Sigma_{22}^{-1}(x_2-\mu_2) ])  
 \end{align}\]</span>
-<p>Thus, <span class="math display">\[x_1-\mu_1|x_2 \sim N(\Omega_{11}^{-1}\Omega_{12}(x_2-\mu_2),\Omega_{11}^{-1})\]</span> which means, <span class="math display">\[x_1|x_2 \sim N(\mu_1+\Omega_{11}^{-1}\Omega_{12}(x_2-\mu_2), \Omega_{11}^{-1})\]</span> Plug in the expression for <span class="math inline">\(\Omega_11\)</span> and <span class="math inline">\(\Omega_12\)</span> we also get: <span class="math display">\[x_1|x_2 \sim N(\mu_1+\Sigma_{12}\Sigma_{22}^{-1}(x_2-\mu_2), \Omega_{11}^{-1})\]</span> This is the trational form and shows how the regression of <span class="math inline">\(x_1\)</span> on <span class="math inline">\(x_2\)</span> is based on the covariance elements <span class="math inline">\(\Sigma_{12}\)</span> being rotated and scaled by the variance <span class="math inline">\(\Sigma_{22}\)</span> of the conditioning variables.</p>
+<p>Thus, <span class="math display">\[x_1-\mu_1|x_2 \sim N(\Omega_{11}^{-1}\Omega_{12}(x_2-\mu_2),\Omega_{11}^{-1})\]</span> which means, <span class="math display">\[x_1|x_2 \sim N(\mu_1+\Omega_{11}^{-1}\Omega_{12}(x_2-\mu_2), \Omega_{11}^{-1})\]</span> Plug in the expression for <span class="math inline">\(\Omega_{11}\)</span> and <span class="math inline">\(\Omega_{12}\)</span> we also get: <span class="math display">\[x_1|x_2 \sim N(\mu_1+\Sigma_{12}\Sigma_{22}^{-1}(x_2-\mu_2), \Omega_{11}^{-1})\]</span> This is the trational form and shows how the regression of <span class="math inline">\(x_1\)</span> on <span class="math inline">\(x_2\)</span> is based on the covariance elements <span class="math inline">\(\Sigma_{12}\)</span> being rotated and scaled by the variance <span class="math inline">\(\Sigma_{22}\)</span> of the conditioning variables.</p>
 <p>The earlier expression of <span class="math inline">\(E(x_1|x_2) =\mu_1+\Omega_{11}^{-1}\Omega_{12}(x_2-\mu_2)\)</span> shows how the precision matrix is related to univariate complete conditional distributions.</p>
 <p>In a case with <span class="math inline">\(x=(x_1,,,,x_p)\)</span> where <span class="math inline">\(x_{-1}\)</span> denotes all the <span class="math inline">\(x\)</span> except for <span class="math inline">\(x_1\)</span>, we have <span class="math display">\[E(x_1|x_{-1})=\mu_1+\sum_{j}K_{1j}/K_{11}(x_j-\mu_j)\]</span> where <span class="math inline">\(K\)</span> is the precision matrix <span class="math inline">\(\Omega\)</span>, meaning the The conditional regression of <span class="math inline">\(x_1\)</span> on the other variables is such that the regression coefficient on each <span class="math inline">\(x_j\)</span> is <span class="math inline">\(−K_{1,j}/K_{1,1}\)</span>.</p>
 </div>
