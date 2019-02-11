@@ -586,7 +586,7 @@ The likelihood is
 </div>
 <div id="method-of-moments" class="section level5">
 <h5>Method of moments</h5>
-<p>Again, in this question <span class="math inline">\(X\)</span> is <span class="math inline">\(p\times n\)</span>, each column is a observation for <span class="math inline">\(i\)</span>, each row is a n-dimensional predictor. So if we denote the row of <span class="math inline">\(X\)</span> as <span class="math inline">\(X_{1,},,,,X_{p,}\)</span> each of them is a predictor. We have then <span class="math display">\[cov(X_{1,},\epsilon)=E(X_{1,}\epsilon)=0\]</span> .. <span class="math display">\[cov(X_{p,},\epsilon)=E(X_{p,}\epsilon)=0\]</span> Using method of moment for the expectation, we have <span class="math display">\[X_{1,}(y-X^T\beta)=0\]</span> … <span class="math display">\[X_{p,}(y-X^T\beta)=0\]</span> Thus, for all p equations to hold, we have <span class="math display">\[X(y-X^T\beta)=0\]</span> Therefore, <span class="math display">\[\hat{\beta}=(XX^T)^{-1}Xy\]</span></p>
+<p>Again, in this question <span class="math inline">\(X\)</span> is <span class="math inline">\(p\times n\)</span>, each column is a observation for <span class="math inline">\(i\)</span>, each row is a n-dimensional predictor. So if we denote the row of <span class="math inline">\(X\)</span> as <span class="math inline">\(X_{1,},,,,X_{p,}\)</span> each of them is a predictor. We have then <span class="math display">\[cov(X_{1,},\epsilon)=E(X_{1,}\epsilon)=0\]</span> .. <span class="math display">\[cov(X_{p,},\epsilon)=E(X_{p,}\epsilon)=0\]</span> Using method of moment for the expectation, we have <span class="math display">\[1/n \sum_i X_{i,}(y-X^T\beta)=0\]</span> Thus, <span class="math display">\[\sum_i X_{i,}(y-X^T\beta)=0\]</span> which means, <span class="math display">\[Xy-XX^T\beta=0\]</span> Therefore, <span class="math display">\[\hat{\beta}=(XX^T)^{-1}Xy\]</span></p>
 </div>
 </div>
 <div id="part-b-heteroscedastic-error" class="section level4">
@@ -665,7 +665,7 @@ Using maximum likelihood,
 \right]
 \]</span></p>
 <p>Plug in the block matrix inverse formula we proved in Question 3, we have</p>
-<p><span class="math display">\[
+<span class="math display">\[
 \left[
 \begin{array}{c}
    \beta_{-j}  \\
@@ -685,7 +685,9 @@ Using maximum likelihood,
      X_{j}^Ty
 \end{array}
 \right]
-\]</span> where <span class="math display">\[F2=(X_{j}^TX_{j}-X_{j}^TX_{-j}(X_{-j}^TX_{-j})^{-1}X_{-j}^TX_{j})^{-1}\]</span> can be simplified into <span class="math display">\[F2=(X_{j}^TX_{j}-X_{j}^TH_{-j}X_{j})^{-1}=(X_{j}M_{-j}X_{j})^{-1}\]</span> where <span class="math inline">\(H_{-j}\)</span> is the projection matrix and <span class="math inline">\(M_{-j}\)</span> is the residual making matrix for <span class="math inline">\(X_{-j}\)</span>. <span class="math display">\[F_1=(X_{-j}^TX_{-j}-(X_{-j}X_{j})(X_{j}^TX_{j})^{-1}(X_{j}X_{-j}))^{-1}\]</span> which can also be simplified as <span class="math display">\[F_1=(X_{-j}^TX_{-j}-X_{-j}^TH_{j}X_{-j})^{-1}=(X_{-j}^TM_{j}X_{-j})^{-1}\]</span> where <span class="math inline">\(H_{j}\)</span>,<span class="math inline">\(M_{j}\)</span> is projection and residual making matrix of <span class="math inline">\(X_j\)</span>. With the linear system plugging in all we have for the inverse matrix, we get <span class="math display">\[\beta_j=(X_j^TM_{-j}X_{j})^{-1}X_{j}^TM_{-j}y\]</span> Since <span class="math inline">\(M\)</span> matrix is idempotent, <span class="math inline">\(\beta_j\)</span> can also be seen as <span class="math display">\[\beta_j=(X_j^TM{-j}^TM_{-j}X_{j})^{-1}X_{j}^TM^{-j}M_{-j}y\]</span> <span class="math display">\[\beta_j=((M_{-j}X_j)^T(M_{-j}X_{j}))^{-1}(M_{-j}X_{j})^T(M_{-j}y)\]</span> We have just proved the Frisch–Waugh–Lovell theorem (1963). The <span class="math inline">\(\beta_j\)</span> in OLS for one predictor <span class="math inline">\(j\)</span> can also be achieved in two steps: \ 1. Regress <span class="math inline">\(X_{j}\)</span> and <span class="math inline">\(Y\)</span> separately on <span class="math inline">\(X_{-j}\)</span> and get the residual <span class="math inline">\(\epsilon_{xj}\)</span> and <span class="math inline">\(\epsilon_y\)</span>\ 2. Regress <span class="math inline">\(\epsilon_y\)</span> on <span class="math inline">\(\epsilon_{xj}\)</span> gives <span class="math inline">\(\beta_j\)</span>.\</p>
+\]</span> where <span class="math display">\[F2=(X_{j}^TX_{j}-X_{j}^TX_{-j}(X_{-j}^TX_{-j})^{-1}X_{-j}^TX_{j})^{-1}\]</span> can be simplified into <span class="math display">\[F2=(X_{j}^TX_{j}-X_{j}^TH_{-j}X_{j})^{-1}=(X_{j}M_{-j}X_{j})^{-1}\]</span> where <span class="math inline">\(H_{-j}\)</span> is the projection matrix and <span class="math inline">\(M_{-j}\)</span> is the residual making matrix for <span class="math inline">\(X_{-j}\)</span>. <span class="math display">\[F_1=(X_{-j}^TX_{-j}-(X_{-j}X_{j})(X_{j}^TX_{j})^{-1}(X_{j}X_{-j}))^{-1}\]</span> which can also be simplified as <span class="math display">\[F_1=(X_{-j}^TX_{-j}-X_{-j}^TH_{j}X_{-j})^{-1}=(X_{-j}^TM_{j}X_{-j})^{-1}\]</span> where <span class="math inline">\(H_{j}\)</span>,<span class="math inline">\(M_{j}\)</span> is projection and residual making matrix of <span class="math inline">\(X_j\)</span>. With the linear system plugging in all we have for the inverse matrix, we get <span class="math display">\[\beta_j=(X_j^TM_{-j}X_{j})^{-1}X_{j}^TM_{-j}y\]</span> Since <span class="math inline">\(M\)</span> matrix is idempotent, <span class="math inline">\(\beta_j\)</span> can also be seen as <span class="math display">\[\beta_j=(X_j^TM{-j}^TM_{-j}X_{j})^{-1}X_{j}^TM^{-j}M_{-j}y\]</span> <span class="math display">\[\beta_j=((M_{-j}X_j)^T(M_{-j}X_{j}))^{-1}(M_{-j}X_{j})^T(M_{-j}y)\]</span> We have just proved the Frisch–Waugh–Lovell theorem (1963). The <span class="math inline">\(\beta_j\)</span> in OLS for one predictor <span class="math inline">\(j\)</span> can also be achieved in two steps:<br />
+1. Regress <span class="math inline">\(X_{j}\)</span> and <span class="math inline">\(Y\)</span> separately on <span class="math inline">\(X_{-j}\)</span> and get the residual <span class="math inline">\(\epsilon_{xj}\)</span> and <span class="math inline">\(\epsilon_y\)</span><br />
+2. Regress <span class="math inline">\(\epsilon_y\)</span> on <span class="math inline">\(\epsilon_{xj}\)</span> gives <span class="math inline">\(\beta_j\)</span>.<br />
 Therefore, from <span class="math inline">\(\beta_j=(X_j^TM_{-j}X_{j})^{-1}X_{j}^TM_{-j}y\)</span>, the variance of <span class="math inline">\(\beta_j\)</span> is <span class="math display">\[var(\beta_j)=\sigma^2(X_{j}^TX_{j}-X_{j}^TX_{-j}(X_{-j}^TX_{-j})^{-1}X_{-j}^TX_{j})^{-1}\]</span> which can also be written as
 <span class="math display">\[\begin{align*}
     var(\beta_j)&amp;=\sigma^2(X_{j}^TX_{j}-X_{j}^TX_{-j}(X_{-j}^TX_{-j})^{-1}X_{-j}^TX_{j})^{-1} \\
@@ -697,7 +699,7 @@ Therefore, from <span class="math inline">\(\beta_j=(X_j^TM_{-j}X_{j})^{-1}X_{j}
 </div>
 <div id="part-b-2-compare-with-lm-function---example-of-ozone-dataset" class="section level4">
 <h4>Part B-2 Compare with lm function - Example of Ozone Dataset</h4>
-<p>Using Ozone.R in the Class folder, We first get the covariance matrix of <span class="math inline">\(\beta\)</span>. <span class="math display">\[cov(\hat{\beta})=\hat{\sigma}^2(X^TX)^{-1}=\frac{\sum(y_i-X_i\hat{\beta})^2}{n-1}(X^TX)^{-1}\]</span> The standard deviation of each <span class="math inline">\(\beta_j\)</span> is the square root of the diagonal of this covariance matrix, which was what we calculated earlier. <span class="math display">\[\hat{\sigma^2_{\beta_j}}=\frac{\sum(y_i-X_i\hat{\beta})^2}{n-1}\bigg{/}(S_j^2(1-R_{j}^2))\]</span> <span class="math display">\[\hat{\sigma_{\beta_j}}=\sqrt{\hat{\sigma^2_{\beta_j}}}=\sqrt{\frac{\sum(y_i-X_i\hat{\beta})^2}{n-1}\bigg{/}(S_j^2(1-R_{j}^2))}\]</span></p>
+<p>Using Ozone.R in the Class folder, We first get the covariance matrix of <span class="math inline">\(\beta\)</span>. <span class="math display">\[cov(\hat{\beta})=\hat{\sigma}^2(X^TX)^{-1}=\frac{\sum(y_i-X_i\hat{\beta})^2}{n-p}(X^TX)^{-1}\]</span> The standard deviation of each <span class="math inline">\(\beta_j\)</span> is the square root of the diagonal of this covariance matrix, which was what we calculated earlier. <span class="math display">\[\frac{\hat{\epsilon}^T\hat{\epsilon}}{\sigma^2} \sim \chi^2_{n-p}\]</span> So we have <span class="math display">\[E(\frac{\hat{\epsilon}^T\hat{\epsilon}}{n-p})=\sigma^2\]</span></p>
 <pre class="r"><code># Load the library
 library(mlbench)
 
@@ -719,13 +721,13 @@ x = cbind(1,x)
 betahat = solve(t(x) %*% x) %*% t(x) %*% y
 
 # Fill in the blank
-sig2est=sum((y- x%*%betahat)^2)/(length(y)-1)
+sig2est=sum((y- x%*%betahat)^2)/(dim(x)[1]-dim(x)[2])
 betacov = sig2est* solve(t(x) %*% x)
 sqrt(diag(betacov))</code></pre>
 <pre><code>##                        V5           V6           V7           V8 
-## 3.746511e+01 7.087729e-03 1.702197e-01 2.323381e-02 6.773803e-02 
+## 3.832869e+01 7.251104e-03 1.741433e-01 2.376936e-02 6.929942e-02 
 ##           V9          V10          V11          V12          V13 
-## 1.219037e-01 3.854841e-04 1.444425e-02 1.166039e-01 4.785936e-03</code></pre>
+## 1.247136e-01 3.943697e-04 1.477719e-02 1.192917e-01 4.896254e-03</code></pre>
 <p>Then we can get the variance of <span class="math inline">\(\beta_j\)</span>s from the lm function.</p>
 <pre class="r"><code># Now compare to lm
 # the 'minus 1' notation says not to fit an intercept (we've already hard-coded it as an extra column)
@@ -764,7 +766,7 @@ sqrt(diag(betacovlm))</code></pre>
 ## 3.832869e+01 7.251104e-03 1.741433e-01 2.376936e-02 6.929942e-02 
 ##          xV9         xV10         xV11         xV12         xV13 
 ## 1.247136e-01 3.943697e-04 1.477719e-02 1.192917e-01 4.896254e-03</code></pre>
-<p>This is slightly different from our hand calculation as lm function in R. As lm uses the following to estimate <span class="math inline">\(\hat{\sigma_{\beta_j}}\)</span> <span class="math display">\[\hat{\sigma_{\beta_j}}=\sqrt{\frac{RSE}{\sum_ix_{ij}^2}}=\sqrt{\frac{\sum(y_i-X_i\hat{\beta})^2}{n-1}\bigg{/}(S_j^2)}\]</span> The difference is lm function calculation misses the part <span class="math inline">\((1-R_j^2)\)</span>. By ignoring the correlation between the predictors (multicollinearity),lm function sd underestimates variance of <span class="math inline">\(\beta_j\)</span>.</p>
+<p>which is the same thing as using lm function. As lm uses the following to estimate <span class="math inline">\(\hat{\sigma_{\beta_j}}\)</span> <span class="math display">\[\hat{\sigma_{\beta_j}}=\sqrt{\frac{RSE}{\sum_ix_{ij}^2}}=\sqrt{\frac{\sum(y_i-X_i\hat{\beta})^2}{n-1}\bigg{/}(S_j^2)}\]</span></p>
 </div>
 </div>
 
