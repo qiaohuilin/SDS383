@@ -615,7 +615,11 @@ Using maximum likelihood,
 <h4>Part (A) Sampling distribution for OLS estimator</h4>
 <p>As we show in the previous section, <span class="math display">\[\hat{\beta}=(X^TX)^{-1}X^Ty\]</span> where <span class="math inline">\(X\)</span> is the <span class="math inline">\(n\times p\)</span> design matrix.<br />
 </p>
-<p>Since <span class="math inline">\(y=X\beta+\epsilon \sim N(X\beta, \sigma^2I_p)\)</span>, Using Question 2 result, the linear transformation of normal variable gives us, <span class="math display">\[E(\hat{\beta})=(X^TX)^{-1}X^T(X\beta)=\beta\]</span> <span class="math display">\[var(\hat{\beta})=(X^TX)^{-1}X^T \sigma^2(X^TX)^{-1}X^T=\sigma^2(X^TX)^{-1}\]</span> <span class="math display">\[\hat{\beta} \sim N(\beta,\sigma^2(X^TX)^{-1})  \]</span> #### Part B-1 Standard Deviation of Each <span class="math inline">\(\beta_j\)</span> For each <span class="math inline">\(\hat{\beta_j}\)</span>, the variance is <span class="math display">\[var(\beta_j)=\sigma^2(X^TX)^{-1}_{jj}\]</span> We need to find the <span class="math inline">\(jth\)</span> row <span class="math inline">\(jth\)</span> column of <span class="math inline">\((X^TX)^{-1}\)</span>, <span class="math inline">\((X^TX)^{-1}_{jj}\)</span>.</p>
+<p>Since <span class="math inline">\(y=X\beta+\epsilon \sim N(X\beta, \sigma^2I_p)\)</span>, Using Question 2 result, the linear transformation of normal variable gives us, <span class="math display">\[E(\hat{\beta})=(X^TX)^{-1}X^T(X\beta)=\beta\]</span> <span class="math display">\[var(\hat{\beta})=(X^TX)^{-1}X^T \sigma^2(X^TX)^{-1}X^T=\sigma^2(X^TX)^{-1}\]</span> <span class="math display">\[\hat{\beta} \sim N(\beta,\sigma^2(X^TX)^{-1})  \]</span></p>
+</div>
+<div id="part-b-1-standard-deviation-of-each-beta_j" class="section level4">
+<h4>Part B-1 Standard Deviation of Each <span class="math inline">\(\beta_j\)</span></h4>
+<p>For each <span class="math inline">\(\hat{\beta_j}\)</span>, the variance is <span class="math display">\[var(\beta_j)=\sigma^2(X^TX)^{-1}_{jj}\]</span> We need to find the <span class="math inline">\(jth\)</span> row <span class="math inline">\(jth\)</span> column of <span class="math inline">\((X^TX)^{-1}\)</span>, <span class="math inline">\((X^TX)^{-1}_{jj}\)</span>.</p>
 <p>denote <span class="math inline">\(jth\)</span> predictor as <span class="math inline">\(X_j\)</span>, all other predictors as <span class="math inline">\(X_{-j}\)</span>.</p>
 <p><span class="math display">\[
 \left[
