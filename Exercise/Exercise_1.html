@@ -786,6 +786,32 @@ print((sig2est* solve(t(x) %*% x))[dim(x)[2],dim(x)[2]])</code></pre>
 <pre><code>## [1] 2.39733e-05</code></pre>
 </div>
 </div>
+<div id="question-6" class="section level2">
+<h2>Question 6</h2>
+<div id="part-a-variance-of-the-sum" class="section level4">
+<h4>Part (A) Variance of the sum</h4>
+<span class="math display">\[f(\theta)=\theta_1+\theta_2\]</span> Then the variance of <span class="math inline">\(f\)</span> is
+<span class="math display">\[\begin{align*}
+    var(f(\theta))&amp;=E((\hat{\theta_1}+\hat{\theta_2})-(\theta_1+\theta_2))^2 \\
+    &amp;= E((\hat{\theta_1}+\hat{\theta_2}))^2-(\theta_1+\theta_2)^2\\
+    &amp;= E(\hat(\theta_1)^2)-\theta_1^2+2[E(\hat{\theta_1}\hat{\theta_2})-\theta_1\theta_2]+E(\hat{\theta_2}^2)-\theta_2^2\\
+    &amp;= var(\hat{\theta_1})+2cov(\hat{\theta_1},\hat{\theta_2})+var(\hat{\theta_2}))\\
+    &amp;= \Sigma_{11}+2\Sigma_{12}+\Sigma_{22}
+\end{align*}\]</span>
+Generalizing to <span class="math inline">\(f(\theta)=\theta_1+\theta_2+...\theta_p\)</span>
+<span class="math display">\[\begin{align*}
+    var(f(\theta))&amp;=E((\hat{\theta_1}+\hat{\theta_2}+...\hat{\theta_p})-(\theta_1+\theta_2+...+\theta_p))^2 \\
+    &amp;= E((\hat{\theta_1}+\hat{\theta_2}+...+\hat{\theta_p}))^2-(\theta_1+\theta_2+...+\theta_p)^2\\
+    &amp;= \sum_iE(\hat(\theta_i)^2)-\theta_i^2+2\sum_{j&lt;i}[E(\hat{\theta_i}\hat{\theta_j})-\theta_i\theta_j]\\
+    &amp;= \sum_ivar(\hat{\theta_i})+2\sum_{j&lt;i}cov(\hat{\theta_i},\hat{\theta_j})\\
+    &amp;= \sum_i\Sigma_{ii}+2\sum_{j&lt;i}\Sigma_{ij}
+\end{align*}\]</span>
+</div>
+<div id="part-b-approximation-for-nonlinear-f" class="section level4">
+<h4>Part (B) Approximation for nonlinear f</h4>
+<p>When <span class="math inline">\(f\)</span> is nonlinear, we first use a Taylor expansion for <span class="math inline">\(f\)</span> at <span class="math inline">\(\theta\)</span> <span class="math display">\[f(\hat{\theta})=f(\theta)+f'(\theta)(\hat{\theta}-\theta)+R_1\]</span> Using Lagrange form of the remainder, the remainder is <span class="math display">\[R_1=\frac{f''(z)}{2}\theta^2\]</span> where <span class="math inline">\(z\)</span> is some real number between <span class="math inline">\(\hat{\theta}\)</span> and <span class="math inline">\(\theta\)</span> based on mean value theorem. If we have <span class="math inline">\(|f''(z)|\leq M\)</span> for any <span class="math inline">\(z\)</span> in between <span class="math inline">\(\hat{\theta}\)</span> and <span class="math inline">\(\theta\)</span>, then the error has the upper bound <span class="math display">\[R_1\leq \frac{M}{2}\theta^2\]</span> If we use taylor expansion of <span class="math inline">\(f\)</span> to approximate the non-linear <span class="math inline">\(f\)</span>, <span class="math display">\[var(f(\hat{\theta}))=f'(\theta)^2 var(\hat{\theta})=\nabla f(\theta) var(\hat{\theta}) \nabla f ^T \]</span> The caveat is that we might not know or estimate <span class="math inline">\(\nabla f(\theta)\)</span>, but we can plug in the <span class="math inline">\(\hat{\theta}\)</span> in the gradient.</p>
+</div>
+</div>
 
 
 
