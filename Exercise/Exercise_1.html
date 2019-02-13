@@ -564,49 +564,48 @@ We know the marginal distribution of <span class="math inline">\(x_2\)</span> is
 <div id="least-squares" class="section level5">
 <h5>Least Squares</h5>
 <span class="math display">\[\begin{align}
-    L_1 &amp;= \sum_i(y_i-x_i^T\beta)^2\\
-    &amp;= \sum_i(y_i^2-2y_ix_i^T\beta+\beta^Tx_ix_i^T\beta)
+    L_1 &amp;= \sum_i(y_i-x_i\beta)^2\\
+    &amp;= \sum_i(y_i^2-2\beta^Tx_i^Ty+\beta^Tx_i^Tx_i\beta)
 \end{align}\]</span>
 Taking first derivative and set it to <span class="math inline">\(0\)</span> gives us the least square estimator.
 <span class="math display">\[\begin{align}
-    \frac{\partial L_1}{\partial \beta} &amp;=-2\sum_i x_i y_i + 2\sum_i \beta^T x_i x_i^T \beta =0 \\
-    \hat{\beta} &amp;= (\sum_i x_i x_i^T)^{-1}\sum y_i x_i=(XX^T)^{-1}Xy
+    \frac{\partial L_1}{\partial \beta} &amp;=-2\sum_i x_i^T y_i + 2\sum_i \beta^T x_i^T x_i \beta =0 \\
+    \hat{\beta} &amp;= (\sum_i x_i^T x_i)^{-1}\sum y_i x_i=(X^TX)^{-1}X^Ty
 \end{align}\]</span>
-<p>Note the dimension of <span class="math inline">\(X\)</span> in this question design is <span class="math inline">\(p\times n\)</span>, which is the transpose of our usual <span class="math inline">\(X\)</span> in OLS.</p>
 </div>
 <div id="mle" class="section level5">
 <h5>MLE</h5>
 The likelihood is
 <span class="math display">\[\begin{align}
     L_2&amp;=\prod_i p(y_i|\beta, \sigma^2)\\
-    &amp;= \prod_i \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{1}{2\sigma^2}(y_i-x_i^T\beta)^2} \\
-    &amp;= (2\pi \sigma)^{-\frac{n}{2}} e^{-\frac{1}{2\sigma^2}\sum(y_i-x_i^T\beta)}
+    &amp;= \prod_i \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{1}{2\sigma^2}(y_i-x_i\beta)^2} \\
+    &amp;= (2\pi \sigma)^{-\frac{n}{2}} e^{-\frac{1}{2\sigma^2}\sum(y_i-x_i\beta)}
 \end{align}\]</span>
-<p>Taking log, <span class="math display">\[l2=-\frac{n}{2}\log(2\pi\sigma)-\frac{1}{2\sigma^2}\sum_i(y_i-x_i^T\beta)\]</span> Maximizing <span class="math inline">\(l2\)</span> is minimizing <span class="math inline">\(\sum_i(y_i-x_i^\beta)^2\)</span>, which is equivalent to minimizing <span class="math inline">\(L_1\)</span>. By setting <span class="math inline">\(\frac{\sum_i(y_i-x_i^2\beta)}{\beta}=0\)</span>, we get the same estimator <span class="math inline">\(\hat{\beta}=(\sum_i x_ix_i^T)^{-1}(\sum_i y_ix_i)=(XX^T)^{-1}Xy\)</span></p>
+<p>Taking log, <span class="math display">\[l2=-\frac{n}{2}\log(2\pi\sigma)-\frac{1}{2\sigma^2}\sum_i(y_i-x_i\beta)\]</span> Maximizing <span class="math inline">\(l2\)</span> is minimizing <span class="math inline">\(\sum_i(y_i-x_i\beta)^2\)</span>, which is equivalent to minimizing <span class="math inline">\(L_1\)</span>. By setting <span class="math inline">\(\frac{\sum_i(y_i-x_i\beta)^2}{\beta}=0\)</span>, we get the same estimator <span class="math inline">\(\hat{\beta}=(\sum_i x_i^Tx_i)^{-1}(\sum_i y_ix_i)=(X^TX)^{-1}X^Ty\)</span></p>
 </div>
 <div id="method-of-moments" class="section level5">
 <h5>Method of moments</h5>
-<p>Again, in this question <span class="math inline">\(X\)</span> is <span class="math inline">\(p\times n\)</span>, each column is a observation for <span class="math inline">\(i\)</span>, each row is a n-dimensional predictor. So if we denote the row of <span class="math inline">\(X\)</span> as <span class="math inline">\(X_{1,},,,,X_{p,}\)</span> each of them is a predictor. We have then <span class="math display">\[cov(X_{1,},\epsilon)=E(X_{1,}\epsilon)=0\]</span> .. <span class="math display">\[cov(X_{p,},\epsilon)=E(X_{p,}\epsilon)=0\]</span> Using method of moment for the expectation, we have <span class="math display">\[1/n \sum_i X_{i,}(y-X^T\beta)=0\]</span> Thus, <span class="math display">\[\sum_i X_{i,}(y-X^T\beta)=0\]</span> which means, <span class="math display">\[Xy-XX^T\beta=0\]</span> Therefore, <span class="math display">\[\hat{\beta}=(XX^T)^{-1}Xy\]</span></p>
+<p>Again, in this question <span class="math inline">\(X\)</span> is <span class="math inline">\(p\times n\)</span>, each column is a observation for <span class="math inline">\(i\)</span>, each row is a n-dimensional predictor. So if we denote the row of <span class="math inline">\(X\)</span> as <span class="math inline">\(X_{1,},,,,X_{p,}\)</span> each of them is a predictor. We have then <span class="math display">\[cov(X_{1,},\epsilon)=E(X_{1,}\epsilon)=0\]</span> .. <span class="math display">\[cov(X_{p,},\epsilon)=E(X_{p,}\epsilon)=0\]</span> Using method of moment for the expectation, we have <span class="math display">\[1/n \sum_i X_{i,}(y-X\beta)=0\]</span> Thus, <span class="math display">\[\sum_i X_{i,}(y-X^T\beta)=0\]</span> which means, <span class="math display">\[Xy-X^TX\beta=0\]</span> Therefore, <span class="math display">\[\hat{\beta}=(X^TX)^{-1}Xy\]</span></p>
 </div>
 </div>
 <div id="part-b-heteroscedastic-error" class="section level4">
 <h4>Part (B) Heteroscedastic Error</h4>
 Using weighted least squares,
 <span class="math display">\[\begin{align}
-    L_1 &amp;= \sum_i w_i(y_i-x_i^T\beta)^2\\
-    &amp;= \sum_i(y_i^2-2y_ix_i^T\beta+\beta^Tx_ix_i^T\beta)\\
+    L_1 &amp;= \sum_i w_i(y_i-x_i\beta)^2\\
+    &amp;= \sum_iw_i(y_i^2-2\beta^Tx_i^Ty_i+\beta^Tx_ix_i^T\beta)\\
     &amp;= \sum_iw_iy_i^2-2\sum_i w_iy_ix_i^T\beta + \sum_i\beta w_ix_ix_i^T \beta 
 \end{align}\]</span>
 <span class="math display">\[\begin{align}
-    \frac{\partial L_1}{\partial \beta} &amp;=-2\sum_i w_iy_ix_i^T+2\sum_iw_ix_ix_i^T\beta=0 \\
+    \frac{\partial L_1}{\partial \beta} &amp;=-2\sum_i w_iy_ix_i+2\sum_iw_ix_ix_i\beta=0 \\
     \hat{\beta} &amp;= (\sum_iw_ix_ix_i^T)^{-1}(\sum_iw_iy_ix_i)
 \end{align}\]</span>
 Using maximum likelihood,
 <span class="math display">\[\begin{align}
     L_2 &amp;=\prod_i p(y_i|\beta,\sigma_i^2)\\
-    &amp;= \left(\prod_i(2\pi\sigma_i)^{-\frac{1}{2}}\right) e^{-\sum_i\frac{1}{2\sigma_i^2}(y_i-x_i^T\beta)^2}
+    &amp;= \left(\prod_i(2\pi\sigma_i)^{-\frac{1}{2}}\right) e^{-\sum_i\frac{1}{2\sigma_i^2}(y_i-x_i\beta)^2}
 \end{align}\]</span>
-<p>Taking log, <span class="math display">\[l2=\log L2 \propto -\frac{1}{2}\sum_i\frac{1}{\sigma_i^2}(y_i-x_i^T\beta)^2\]</span> Maximizing <span class="math inline">\(L2\)</span> is equivalent to minimizing <span class="math inline">\(\sum_i\frac{1}{\sigma_i^2}(y_i-x_i^T\beta)^2\)</span>. <span class="math display">\[\frac{\partial \sum_i\frac{1}{\sigma_i^2}(y_i-x_i^T\beta)^2}{\partial \beta}=0\]</span> <span class="math display">\[\hat{\beta}=(\sum_i\frac{1}{\sigma_i^2}x_ix_i^T)^{-1}(\sum_i\frac{1}{\sigma_i^2}y_ix_i)\]</span> This is in line with weighted least squares provided <span class="math display">\[w_i=\frac{1}{\sigma_i^2}\]</span></p>
+<p>Taking log, <span class="math display">\[l2=\log L2 \propto -\frac{1}{2}\sum_i\frac{1}{\sigma_i^2}(y_i-x_i\beta)^2\]</span> Maximizing <span class="math inline">\(L2\)</span> is equivalent to minimizing <span class="math inline">\(\sum_i\frac{1}{\sigma_i^2}(y_i-x_i\beta)^2\)</span>. <span class="math display">\[\frac{\partial \sum_i\frac{1}{\sigma_i^2}(y_i-x_i\beta)^2}{\partial \beta}=0\]</span> <span class="math display">\[\hat{\beta}=(\sum_i\frac{1}{\sigma_i^2}x_ix_i)^{-1}(\sum_i\frac{1}{\sigma_i^2}y_ix_i)\]</span> This is in line with weighted least squares provided <span class="math display">\[w_i=\frac{1}{\sigma_i^2}\]</span></p>
 </div>
 </div>
 <div id="question-5" class="section level2">
@@ -688,7 +687,7 @@ Using maximum likelihood,
 \]</span> where <span class="math display">\[F2=(X_{j}^TX_{j}-X_{j}^TX_{-j}(X_{-j}^TX_{-j})^{-1}X_{-j}^TX_{j})^{-1}\]</span> can be simplified into <span class="math display">\[F2=(X_{j}^TX_{j}-X_{j}^TH_{-j}X_{j})^{-1}=(X_{j}M_{-j}X_{j})^{-1}\]</span> where <span class="math inline">\(H_{-j}\)</span> is the projection matrix and <span class="math inline">\(M_{-j}\)</span> is the residual making matrix for <span class="math inline">\(X_{-j}\)</span>. <span class="math display">\[F_1=(X_{-j}^TX_{-j}-(X_{-j}X_{j})(X_{j}^TX_{j})^{-1}(X_{j}X_{-j}))^{-1}\]</span> which can also be simplified as <span class="math display">\[F_1=(X_{-j}^TX_{-j}-X_{-j}^TH_{j}X_{-j})^{-1}=(X_{-j}^TM_{j}X_{-j})^{-1}\]</span> where <span class="math inline">\(H_{j}\)</span>,<span class="math inline">\(M_{j}\)</span> is projection and residual making matrix of <span class="math inline">\(X_j\)</span>. With the linear system plugging in all we have for the inverse matrix, we get <span class="math display">\[\beta_j=(X_j^TM_{-j}X_{j})^{-1}X_{j}^TM_{-j}y\]</span> Since <span class="math inline">\(M\)</span> matrix is idempotent, <span class="math inline">\(\beta_j\)</span> can also be seen as <span class="math display">\[\beta_j=(X_j^TM{-j}^TM_{-j}X_{j})^{-1}X_{j}^TM^{-j}M_{-j}y\]</span> <span class="math display">\[\beta_j=((M_{-j}X_j)^T(M_{-j}X_{j}))^{-1}(M_{-j}X_{j})^T(M_{-j}y)\]</span> We have just proved the Frisch–Waugh–Lovell theorem (1963). The <span class="math inline">\(\beta_j\)</span> in OLS for one predictor <span class="math inline">\(j\)</span> can also be achieved in two steps:<br />
 1. Regress <span class="math inline">\(X_{j}\)</span> and <span class="math inline">\(Y\)</span> separately on <span class="math inline">\(X_{-j}\)</span> and get the residual <span class="math inline">\(\epsilon_{xj}\)</span> and <span class="math inline">\(\epsilon_y\)</span><br />
 2. Regress <span class="math inline">\(\epsilon_y\)</span> on <span class="math inline">\(\epsilon_{xj}\)</span> gives <span class="math inline">\(\beta_j\)</span>.<br />
-Therefore, from <span class="math inline">\(\beta_j=(X_j^TM_{-j}X_{j})^{-1}X_{j}^TM_{-j}y\)</span>, the variance of <span class="math inline">\(\beta_j\)</span> is <span class="math display">\[var(\beta_j)=\sigma^2(X_{j}^TX_{j}-X_{j}^TX_{-j}(X_{-j}^TX_{-j})^{-1}X_{-j}^TX_{j})^{-1}\]</span> which can also be written as
+Therefore, from <span class="math inline">\(\beta_j=(X_j^TM_{-j}X_{j})^{-1}X_{j}^TM_{-j}y\)</span>, the variance of <span class="math inline">\(\beta_j\)</span> is <span class="math display">\[var(\beta_j)=\sigma^2(X_j^TM_{-j}X_j)^{-1}=\sigma^2(X_{j}^TX_{j}-X_{j}^TX_{-j}(X_{-j}^TX_{-j})^{-1}X_{-j}^TX_{j})^{-1}\]</span> which can also be written as
 <span class="math display">\[\begin{align*}
     var(\beta_j)&amp;=\sigma^2(X_{j}^TX_{j}-X_{j}^TX_{-j}(X_{-j}^TX_{-j})^{-1}X_{-j}^TX_{j})^{-1} \\
     &amp;= \sigma^2[X_{j}^TX_{j}(1-\frac{X_{j}^TX_{-j}(X_{-j}^TX_{-j})^{-1}X_{-j}^TX_{j}}{X_{j}^TX_{j}})]^{-1} \\
@@ -767,6 +766,24 @@ sqrt(diag(betacovlm))</code></pre>
 ##          xV9         xV10         xV11         xV12         xV13 
 ## 1.247136e-01 3.943697e-04 1.477719e-02 1.192917e-01 4.896254e-03</code></pre>
 <p>which is the same thing as using lm function. As lm uses the following to estimate <span class="math inline">\(\hat{\sigma_{\beta_j}}\)</span> <span class="math display">\[\hat{\sigma_{\beta_j}}=\sqrt{\frac{RSE}{\sum_ix_{ij}^2}}=\sqrt{\frac{\sum(y_i-X_i\hat{\beta})^2}{n-1}\bigg{/}(S_j^2)}\]</span></p>
+<p>If we want to check out the Frisch–Waugh–Lovell theorem,</p>
+<pre class="r"><code>xwoj=x[,-dim(x)[2]]
+xj=x[,dim(x)[2]]
+ep1=xj-xwoj %*% solve(t(xwoj) %*% xwoj) %*% t(xwoj) %*% xj
+ep2=y-xwoj %*% solve(t(xwoj) %*% xwoj) %*% t(xwoj) %*% y
+#show the two ways of estimate is the same
+print(solve(t(ep1) %*% ep1) %*% t(ep1) %*% ep2)</code></pre>
+<pre><code>##              [,1]
+## [1,] -0.003395131</code></pre>
+<pre class="r"><code>print(betahat[dim(x)[2]])</code></pre>
+<pre><code>## [1] -0.003395131</code></pre>
+<pre class="r"><code>#show the calculation using non-matrix form for each beta_j we just derived
+print(sig2est/(sum(xj^2)*( 1-(t(xj) %*% xwoj %*% solve(t(xwoj) %*% xwoj) %*% t(xwoj) %*% xj)/(t(xj) %*% xj))))</code></pre>
+<pre><code>##             [,1]
+## [1,] 2.39733e-05</code></pre>
+<pre class="r"><code>#show the usual (X^TX)^{-1}_jj term for variance
+print((sig2est* solve(t(x) %*% x))[dim(x)[2],dim(x)[2]])</code></pre>
+<pre><code>## [1] 2.39733e-05</code></pre>
 </div>
 </div>
 
