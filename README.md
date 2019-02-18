@@ -7,3 +7,6 @@ My solutions:
 
 Exercise 1:
 [Exercise 1 Solution](https://qiaohuilin.github.io/SDS383/Exercise/Exercise_1.html)
+
+Exercise 2:
+[Exercise 2 Solution](https://qiaohuilin.github.io/SDS383/Exercise/Exercise_2.html)
