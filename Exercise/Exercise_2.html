@@ -228,8 +228,8 @@ $(document).ready(function () {
 Use the notation of <span class="math inline">\(d^*\)</span>, <span class="math inline">\(n^*\)</span>, <span class="math inline">\(k^*\)</span> in joint posterior in Part B:
 <span class="math display">\[\begin{align}
     p(w|y) &amp;\propto \int w^{\frac{d^*+1}{2}-1}e^{-\frac{k^*(\theta-\mu^*)^2+\eta^*}{2}w} d\theta\\
-    &amp; \propto w^{\frac{d^*+1}{2}-1} e^{\frac{\eta^*}{2}w}\int e^{-\frac{k^*(\theta-\mu^*)^2}{2}w} d\theta \\
-    &amp; \propto w^{\frac{d^*+1}{2}-1} e^{\frac{\eta^*}{2}w} \frac{1}{\sqrt{k^*w}}\\
+    &amp; \propto w^{\frac{d^*+1}{2}-1} e^{-\frac{\eta^*}{2}w}\int e^{-\frac{k^*(\theta-\mu^*)^2}{2}w} d\theta \\
+    &amp; \propto w^{\frac{d^*+1}{2}-1} e^{-\frac{\eta^*}{2}w} \frac{1}{\sqrt{k^*w}}\\
     &amp; \propto w^{\frac{d^*}{2}-1} e^{-\frac{n^*}{2}w}\\
     &amp; \sim Ga(\frac{d^*}{2},\frac{n^*}{2})
 \end{align}\]</span>
