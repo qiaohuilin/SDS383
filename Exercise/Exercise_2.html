@@ -245,8 +245,8 @@ Use the notation of <span class="math inline">\(d^*\)</span>, <span class="math 
 </div>
 <div id="part-f-non-informative-prior" class="section level4">
 <h4>Part F Non-informative Prior</h4>
-<p>False. With <span class="math inline">\(d\)</span>, <span class="math inline">\(n\)</span> and <span class="math inline">\(k\)</span> going to <span class="math inline">\(0\)</span>, the integral in the density of <span class="math inline">\(\theta\)</span> and <span class="math inline">\(w\)</span> would go to infinity, both the <span class="math inline">\(p(\theta)\)</span> and <span class="math inline">\(p(w)\)</span> are invalid. Since Gamma distribution requires shape <span class="math inline">\(&gt;0\)</span>, rate <span class="math inline">\(&gt;0\)</span> and t distribution requires postitive parameters as well.<br />
-Reason: in a gamma <span class="math inline">\(w^{d-1}e^{-\eta w}\)</span> if <span class="math inline">\(d\)</span>, <span class="math inline">\(n\)</span> and <span class="math inline">\(k\)</span> going to <span class="math inline">\(0\)</span> this would go to <span class="math inline">\(w^{-1}\)</span>, the integral of this <span class="math inline">\(\int w^{-1} dt=\log(w)|^{\infty}_{0}\)</span> is infinite. And in a <span class="math inline">\(t\)</span> distribution density kernal <span class="math inline">\((1+\frac{1}{d}\frac{(\theta-\mu)^2}{\eta/dk})^{-\frac{d+1}{2}}\)</span> will goes to either <span class="math inline">\((1+0)^0=1\)</span> (if <span class="math inline">\(\eta\)</span> grows faster than <span class="math inline">\(k\)</span>), meaning <span class="math inline">\(\int_0^\infty 1 dt=\infty\)</span> or <span class="math inline">\((1+\infty)^{-\frac{d+1}{2}}=1\)</span> (if <span class="math inline">\(d\)</span> goes to 0,<span class="math inline">\(\eta\)</span> grows slower than <span class="math inline">\(k\)</span>), still meaning <span class="math inline">\(\int_0^\infty 1 dt=\infty\)</span></p>
+<p>False. With <span class="math inline">\(d\)</span>, <span class="math inline">\(n\)</span> and <span class="math inline">\(k\)</span> going to <span class="math inline">\(0\)</span>, the integral in the density of <span class="math inline">\(\theta\)</span> and <span class="math inline">\(w\)</span> would go to infinity, both the <span class="math inline">\(p(\theta)\)</span> and <span class="math inline">\(p(w)\)</span> are invalid. Since Gamma distribution requires shape <span class="math inline">\(&gt;0\)</span>, rate <span class="math inline">\(&gt;0\)</span> and t distribution requires postitive parameters for degrees of freedom <span class="math inline">\(df\)</span> as well.<br />
+Reason: in a gamma <span class="math inline">\(w^{d-1}e^{-\eta w}\)</span> if <span class="math inline">\(d\)</span>, <span class="math inline">\(n\)</span> and <span class="math inline">\(k\)</span> going to <span class="math inline">\(0\)</span> this would go to <span class="math inline">\(w^{-1}\)</span>, the integral of this <span class="math inline">\(\int w^{-1} dt=\log(w)|^{\infty}_{0}\)</span> is infinite. And in a <span class="math inline">\(t\)</span> distribution density kernal <span class="math inline">\((1+\frac{1}{d}\frac{(\theta-\mu)^2}{\eta/dk})^{-\frac{d+1}{2}}\)</span> will goes to either <span class="math inline">\((1+0)^{-0.5}=1\)</span> (if <span class="math inline">\(\eta\)</span> grows faster than <span class="math inline">\(k\)</span>), meaning <span class="math inline">\(\int_0^\infty 1 dt=\infty\)</span> or <span class="math inline">\((1+\infty)^{-\frac{d+1}{2}}=0\)</span> (if <span class="math inline">\(d\)</span> goes to 0,<span class="math inline">\(\eta\)</span> grows slower than <span class="math inline">\(k\)</span>), still meaning invalid integral.</p>
 </div>
 <div id="part-g-non-informative-prior" class="section level4">
 <h4>Part G Non-informative Prior</h4>
@@ -255,7 +255,56 @@ Reason: in a gamma <span class="math inline">\(w^{d-1}e^{-\eta w}\)</span> if <s
 <div id="bayesian-ci-under-non-informative-prior" class="section level4">
 <h4>Bayesian CI under Non-informative Prior</h4>
 <p>True. When <span class="math inline">\(d\)</span>, <span class="math inline">\(n\)</span> and <span class="math inline">\(k\)</span> goes to <span class="math inline">\(0\)</span>, the bayesian posterior parameter would only depend on data (likelihood) and does not depend on prior. Thus the estimate and the CI would behave the same as Frequenist. As we showed, <span class="math inline">\(d\)</span>, <span class="math inline">\(n\)</span> and <span class="math inline">\(k\)</span> going to <span class="math inline">\(0\)</span> simply means that <span class="math inline">\(d^*\)</span>, <span class="math inline">\(k^*\)</span> going to <span class="math inline">\(n\)</span> and <span class="math inline">\(\eta^*\)</span> going to <span class="math inline">\(S_k\)</span>, <span class="math inline">\(\mu^*\)</span> going to <span class="math inline">\(\bar{y}\)</span>. <span class="math display">\[p(\theta|y)\propto (1+\frac{(\theta-\bar{y})^2}{S_k/n^2}\frac{1}{n})^{-\frac{n+1}{2}} \]</span> The credible interval is <span class="math display">\[[\bar{y}-t_{n,\frac{\alpha}{2}}\frac{\sqrt{\sum(y_i-\bar{y})^2}}{n},\bar{y}+t_{n,\frac{\alpha}{2}}\frac{\sqrt{\sum(y_i-\bar{y})^2}}{n}]\]</span> which is the similar to but not exactly the same as the frequenist approach. (Slight difference lies in the degree of freedom in classic approach is <span class="math inline">\(n-1\)</span> and the <span class="math inline">\(S_k\)</span> are divided by <span class="math inline">\(n-1\)</span> instead of <span class="math inline">\(n\)</span>)<br />
-In the frequenist approach, we have the sampling distribution of <span class="math display">\[\frac{y-\bar{y}}{\frac{\sqrt{\frac{\sum(y_i-\bar{y})}{n-1}}}{\sqrt{n}}}\sim t_{n-1}\]</span> Thus, the frequenist confidence interval is <span class="math display">\[[\bar{y}-t_{n-1,\frac{\alpha}{2}}\frac{\sqrt{\sum(y_i-\bar{y})^2}}{\sqrt{n-1}\sqrt{n}},\bar{y}+t_{n-1,\frac{\alpha}{2}}\frac{\sqrt{\sum(y_i-\bar{y})^2}}{\sqrt{n-1}\sqrt{n}}]\]</span></p>
+In the frequenist approach, we have the sampling distribution of <span class="math display">\[\frac{y-\bar{y}}{\frac{\sqrt{\frac{\sum(y_i-\bar{y})}{n-1}}}{\sqrt{n}}}\sim t_{n-1}\]</span> Thus, the frequenist confidence interval is <span class="math display">\[[\bar{y}-t_{n-1,\frac{\alpha}{2}}\frac{\sqrt{\sum(y_i-\bar{y})^2}}{\sqrt{n-1}\sqrt{n}},\bar{y}+t_{n-1,\frac{\alpha}{2}}\frac{\sqrt{\sum(y_i-\bar{y})^2}}{\sqrt{n-1}\sqrt{n}}]\]</span> ## Question 2</p>
+</div>
+<div id="part-a-conditional-posterior-for-beta" class="section level4">
+<h4>Part A Conditional posterior for <span class="math inline">\(\beta\)</span></h4>
+<p><span class="math display">\[\beta|w \sim N(m,(wK)^{-1})\]</span> <span class="math display">\[w \sim Ga(\frac{d}{2},\frac{n}{2})\]</span></p>
+The joint posterior is:
+<span class="math display">\[\begin{align}
+    p(\beta,w|y) &amp;\propto p(y|\beta,w) p(\beta|w)p(w)\\
+    &amp;\propto det(2\pi(w\Lambda)^{-1})^{-\frac{1}{2}}e^{-\frac{1}{2}(y-X\beta)^Tw\Lambda(y-X\beta)}det(2\pi(wK)^{-1})^{-\frac{1}{2}}e^{-\frac{1}{2}(\beta-m)^T(wK)(\beta-m)} w^{\frac{d}{2}-1}e^{-\frac{\eta}{2}w} \\
+    &amp;\propto w^{\frac{d+n+p}{2}-1}e^{-\frac{\eta}{2}w}e^{-\frac{w}{2}(y-X\beta)^T\Lambda(y-X\beta)+(\beta-m)^TK(\beta-m)}
+\end{align}\]</span>
+conditional on <span class="math inline">\(w\)</span>, the posterior for <span class="math inline">\(\beta\)</span> is
+<span class="math display">\[\begin{align}
+    P(\beta|w,y)  &amp;\propto p(\beta,w|y)\\
+    &amp;\propto e^{-\frac{1}{2}(y-X\beta)^Tw\Lambda(y-X\beta)}e^{-\frac{1}{2}(\beta-m)^T(wK)(\beta-m)}\\
+    &amp;\propto e^{-\frac{1}{2}[(y-X\beta)^Tw\Lambda(y-X\beta)+(\beta-m)^T(wK)(\beta-m)}]\\
+    &amp;\propto e^{-\frac{1}{2}(\beta^Tw(X^T\Lambda X+K)\beta-2\beta^T w(X^T\Lambda y+Km))} \\
+    &amp;\text{Note $(Q-A)^TB(Q-A) \propto QBQ-2Q^TBA$}\\
+    &amp; \sim N(((X^T\Lambda X+K))^{-1}(X^T\Lambda y+Km), (w(X^T\Lambda X+K))^{-1})
+\end{align}\]</span>
+</div>
+<div id="part-b-marginal-posterior-for-w" class="section level4">
+<h4>Part B Marginal posterior for <span class="math inline">\(w\)</span></h4>
+<span class="math display">\[\begin{align*}
+    p(w|y) &amp;= \int p(\beta,w|y) d\beta\\
+    &amp; \propto \int w^{\frac{d+n+p}{2}-1}e^{-\frac{\eta}{2}w}e^{-\frac{w}{2}(y-X\beta)^T\Lambda(y-X\beta)+(\beta-m)^TK(\beta-m)} d\beta \\
+    &amp; \propto \int w^{\frac{d+n+p}{2}-1}e^{-\frac{\eta}{2}w} e^{-\frac{w}{2}\beta^T(X^T\Lambda X+K)\beta-2\beta^T(X^T\Lambda y + Km)+y^T\Lambda y+ m^T K m} d\beta \\
+    &amp; \propto \int w^{\frac{d+n+p}{2}-1}e^{-\frac{\eta}{2}w} e^{-\frac{w}{2}[(\beta-\mu)^T\Sigma^{-1}(\beta-\mu)-((X^T \Lambda y +Km)^T(X^T \Lambda X+K)^{-1}(X^T \Lambda y +Km))+y^T\Lambda y+ m^T K m]} d\beta \\
+     &amp; \text{where $\mu=((X^T\Lambda X+K))^{-1}(X^T\Lambda y+Km)$,$\Sigma=(w(X^T\Lambda X+K))^{-1}$}\\
+     &amp; \propto w^{\frac{d+n+p}{2}-1}e^{-\frac{\eta}{2}w} e^{-\frac{w}{2}[y^T\Lambda y+ m^T K m-((X^T \Lambda y +Km)^T(X^T \Lambda X+K)^{-1}(X^T \Lambda y +Km))]} \\
+     &amp; \quad det(2\pi (w(X^T\Lambda X+K))^{-1})^{1/2}\\
+     &amp; \propto w^{\frac{d+n}{2}-1}e^{-\frac{\eta}{2}w} e^{-\frac{w}{2}[y^T\Lambda y+ m^T K m-((X^T \Lambda y +Km)^T(X^T \Lambda X+K)^{-1}(X^T \Lambda y +Km))]}\\
+     &amp; \sim Ga(\frac{d+n}{2}, \frac{1}{2}(\eta+ y^T\Lambda y+ m^T K m-((X^T \Lambda y +Km)^T(X^T \Lambda X+K)^{-1}(X^T \Lambda y +Km))))
+\end{align*}\]</span>
+</div>
+<div id="part-c-margianl-posterior-of-beta" class="section level4">
+<h4>Part C Margianl Posterior of <span class="math inline">\(\beta\)</span></h4>
+<span class="math display">\[\begin{align}
+     p(\beta|y) &amp;= \int p(\beta,w|y) dw\\
+    &amp; \propto \int w^{\frac{d+n+p}{2}-1}e^{-\frac{\eta}{2}w}e^{-\frac{w}{2}(y-X\beta)^T\Lambda(y-X\beta)+(\beta-m)^TK(\beta-m)} dw \\
+    &amp;\propto \frac{\Gamma(\frac{d+n+p}{2})}{\frac{(
+    \eta+(y-X\beta)^T\Lambda(y-X\beta)+(\beta-m)^TK(\beta-m))}{2}^{\frac{n+d+p}{2}}} \\
+    &amp; \propto ( \eta+(y-X\beta)^T\Lambda(y-X\beta)+(\beta-m)^TK(\beta-m))^{-\frac{n+d+p}{2}} \\
+    &amp; \propto (\eta+ y^T\Lambda y+ m^T K m-((X^T \Lambda y +Km)^T(X^T \Lambda X+K)^{-1}(X^T \Lambda y +Km))+\\
+    &amp; (\beta-\mu)^T\Sigma^{-1}(\beta-\mu))^{-\frac{n+d+p}{2}} \\
+     &amp; \text{where $\mu=((X^T\Lambda X+K))^{-1}(X^T\Lambda y+Km)$}\\
+     &amp; \propto (1+\frac{1}{n+d}\frac{(\beta-\mu)^T(n+d)(w(X^T\Lambda X+K))(\beta-\mu))}{c})^{-\frac{n+d+p}{2}}\\
+     &amp; \text{where $c=\eta+ y^T\Lambda y+ m^T K m-((X^T \Lambda y +Km)^T(X^T \Lambda X+K)^{-1}(X^T \Lambda y +Km)$}
+\end{align}\]</span>
+<p>Thus, it is a <span class="math inline">\(t\)</span> distribution of degree of freedom <span class="math inline">\(n+d\)</span>, location <span class="math inline">\(\mu=((X^T\Lambda X+K))^{-1}(X^T\Lambda y+Km)\)</span>, scale <span class="math inline">\(S^{-1}=\frac{n+d}{\eta+ y^T\Lambda y+ m^T K m-((X^T \Lambda y +Km)^T(X^T \Lambda X+K)^{-1}(X^T \Lambda y +Km)}(w(X^T\Lambda X+K))\)</span>. Here the notation of t distribution parameters are generally defined as in <span class="math inline">\(\propto (1+\frac{1}{df}(\beta-\mu)^TS^{-1}(\beta-mu))^{\frac{df+p}{2}}\)</span>.</p>
 </div>
 </div>
 
