@@ -10,3 +10,6 @@ Exercise 1:
 
 Exercise 2:
 [Exercise 2 Solution](https://qiaohuilin.github.io/SDS383/Exercise/Exercise_2.html)
+
+Exercise 3:
+[Exercise 3 Solution](https://qiaohuilin.github.io/SDS383/Exercise/Exercise_3.html)
