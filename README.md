@@ -13,3 +13,6 @@ Exercise 2:
 
 Exercise 3:
 [Exercise 3 Solution](https://qiaohuilin.github.io/SDS383/Exercise/Exercise_3.html)
+
+Exercise 4:
+[Exercise 4 Solution](https://qiaohuilin.github.io/SDS383/Exercise/Exercise_4.html)
